@@ -1,0 +1,16 @@
+---
+- name: copy file to the server
+  hosts: all
+  gather_facts: no
+  become: yes
+  
+  tasks:
+  - name: Copy rpm file to the server
+    copy:
+          src: /home/albert/filebeat/filebeat-7.8.1-x86_64.rpm
+          dest: /home/albert/filebeat
+
+  - name: Install package
+    yum:
+            name: /home/albert/filebeat/filebeat-7.8.1-x86_64.rpm
+            state: present
